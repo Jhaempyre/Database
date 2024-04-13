@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 
 const clientConnection = (uri, options = {}) => {
     // Connect to MongoDB
-    const db = mongoose.createConnection(uri, options);
+    const url = uri+"/serverEnd"
+    const db = mongoose.createConnection(url, options);
     
     // By default, Mongoose skips non-schema filter properties (strictQuery). Adjust it based on your configuration.
     db.set('strictQuery', true);
