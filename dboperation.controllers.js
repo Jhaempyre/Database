@@ -1,6 +1,8 @@
 import AdminModel from './admin.models.js';
-import PaymentModel from './paymnet.models.js';
-import AccountModel from "./accounts.model.js";
+/*
+import clientConnection from './clientConnection.js'; // Update the import path as per your project structure
+*/
+import  {PaymentModel, AccountModel } from './db.client.js'
 
 const addSampleAdminData = async function addSampleAdminData() {
     try {
@@ -22,6 +24,7 @@ const addSamplePaymentData = async function addSamplePaymentData() {
             { payment_id: 'pay123', amount: 1000 },
             { payment_id: 'pay456', amount: 2000 }
         ];
+        console.log(paymentData)
         await PaymentModel.create(paymentData);
         console.log("Sample payment data added to client DB successfully!");
     } catch (error) {

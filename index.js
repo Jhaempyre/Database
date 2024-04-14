@@ -1,6 +1,7 @@
 import express from 'express';
 import connectDB from './db.server.js';
 import dotenv from "dotenv";
+import bodyParser from 'body-parser';
 import { app } from './app.js';
 dotenv.config({
     path:'./.env'
@@ -10,10 +11,12 @@ dotenv.config({
 console.log(process.env.PRIMARY_CONN_STR)
 console.log(process.env.SECONDARY_CONN_STR)
 
-
 const serverDB = connectDB(process.env.PRIMARY_CONN_STR, {
     // (optional) connection options
 });
+
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
   let serverResponse ;
