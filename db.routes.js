@@ -1,12 +1,12 @@
 
 import { Router } from "express";
-import { connectToDatabase } from "./db.controllers.js";
-
+//import { connectToDatabase } from "./db.controllers.js";
+import clientConnection from "./db.client.js";
 const router = new Router();
 
 router.route("/clientdb").get((req, res) => {
   // Call the connectToDatabase function when the API is hit
-  const clientDB = connectToDatabase(process.env.SECONDARY_CONN_STR, {
+  clientConnection(process.env.SECONDARY_CONN_STR, {
     // (optional) connection options
   });
 

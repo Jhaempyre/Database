@@ -6,7 +6,7 @@ const clientConnection = (uri, options = {}) => {
     const db = mongoose.createConnection(url, options);
     
     // By default, Mongoose skips non-schema filter properties (strictQuery). Adjust it based on your configuration.
-    db.set('strictQuery', true);
+   
     
     // Event handling
     db.once('open', () => console.info("MongoDB secondary connection opened!"));
