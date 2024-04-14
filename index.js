@@ -1,14 +1,12 @@
 import express from 'express';
-import mongoose from 'mongoose';
 import connectDB from './db.server.js';
+import dotenv from "dotenv";
 import clientConnection from './db.client.js';
-import dotenv from "dotenv"
-
+import { app } from './app.js';
 dotenv.config({
     path:'./.env'
 })
 
-const app = express();
 
 console.log(process.env.PRIMARY_CONN_STR)
 console.log(process.env.SECONDARY_CONN_STR)
@@ -17,11 +15,6 @@ console.log(process.env.SECONDARY_CONN_STR)
 const serverDB = connectDB(process.env.PRIMARY_CONN_STR, {
     // (optional) connection options
 });
-let i = 0;
-for (i; i < 10; i++) {
-    console.log(i);
-}
-
 
 app.get('/api/hit', (req, res) => {
     // Call the connectToDatabase function when the API is hit
@@ -34,48 +27,7 @@ app.get('/api/hit', (req, res) => {
     res.send('API hit!');
   });
 
-
-/*
-(async function() {
-    try {
-        const adminData = [
-            { username: 'admin11', password: 'admin123', email: 'admin11@example.com' },
-            { username: 'admin12', password: 'admin456', email: 'admin12@example.com' }
-        ];
-        await AdminModel.create(adminData);
-        console.log("Sample admin data added to server DB successfully!");
-    } catch (error) {
-        console.error("Error adding sample admin data to server DB:", error);
-    }
-})();
-
-(async function() {
-    try {
-        const paymentData = [
-            { payment_id: 'pay123', amount: 1000 },
-            { payment_id: 'pay456', amount: 2000 }
-        ];
-        await PaymentModel.create(paymentData);
-        console.log("Sample payment data added to client DB successfully!");
-    } catch (error) {
-        console.error("Error adding sample payment data to client DB:", error);
-    }
-})();
-
-(async function(){
-    try {
-        const accountData = [
-            {account_number:"delhi786", balance:1120245},
-            {account_number:"delhi759", balance:1121545}
-        ];
-        await AccountModel.create(accountData);
-        console.log("Sample account data added to client DB successfully!");
-    } catch (error) {
-        console.error("Error adding sample payment data to client DB:", error);
-    }
-})();
-*/
-let serverResponse ;
+  let serverResponse ;
 
 // Define the API endpoint to check if the server is running
 app.get('/api/check-server', (req, res) => {
@@ -90,6 +42,8 @@ if (serverResponse && serverResponse.message === 'Server is running') {
 } else {
     console.log("6");
 }
+
+
 
 
 const port = process.env.PORT || 8000;
