@@ -10,9 +10,9 @@ dotenv.config({
 import userRouter from './operation.routes.js'
 app.use("/api/v1/users", userRouter)
 
+import dbrouter from './db.routes.js'
+app.use("/api/v2",dbrouter)
 
-import dbRouter from './db.routes.js';
-app.use("/api/v1/db", dbRouter);
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => {

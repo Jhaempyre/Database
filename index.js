@@ -1,7 +1,6 @@
 import express from 'express';
 import connectDB from './db.server.js';
 import dotenv from "dotenv";
-import clientConnection from './db.client.js';
 import { app } from './app.js';
 dotenv.config({
     path:'./.env'
@@ -16,16 +15,6 @@ const serverDB = connectDB(process.env.PRIMARY_CONN_STR, {
     // (optional) connection options
 });
 
-app.get('/api/hit', (req, res) => {
-    // Call the connectToDatabase function when the API is hit
-    const clientDB = clientConnection(process.env.SECONDARY_CONN_STR, {
-      // (optional) connection options
-    });
-  
-    // Now you can perform database operations using clientDB
-    // Respond to the API request as needed
-    res.send('API hit!');
-  });
 
   let serverResponse ;
 
