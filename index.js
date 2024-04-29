@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Define the API endpoint to check if the server is running
 app.get('/api/check-server', (req, res) => {
-    console.log('API endpoint /api/check-server has been hit.');
+    console.log('API endpoint /api/check-server has been hit❤️.');
     serverResponse = { message: 'Server is running', timestamp: Date.now() };
     console.log("1");
     res.status(200).json(serverResponse);

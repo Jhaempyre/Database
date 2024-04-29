@@ -1,7 +1,7 @@
 
 import { Router } from "express";
 //import { connectToDatabase } from "./db.controllers.js";
-import {clientConnection} from "./db.client.js";
+import { dl} from "./db.client.js";
 const router = new Router();
 
 router.route("/clientdb").post((req, res) => {
@@ -9,7 +9,7 @@ router.route("/clientdb").post((req, res) => {
   const {x} = req.body
   console.log(x);
   console.log(req.body)
-  clientConnection(process.env.SECONDARY_CONN_STR, {
+  dl(process.env.SECONDARY_CONN_STR, {
     // (optional) connection options
   },x);
 

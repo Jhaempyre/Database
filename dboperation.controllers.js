@@ -1,8 +1,5 @@
 import AdminModel from './admin.models.js';
-/*
-import clientConnection from './clientConnection.js'; // Update the import path as per your project structure
-*/
-import  {PaymentModel, AccountModel } from './db.client.js'
+import { PaymentModel,AccountModel} from './db.client.js'; // Update the import path as per your project structure
 
 const addSampleAdminData = async function addSampleAdminData() {
     try {
@@ -20,6 +17,7 @@ const addSampleAdminData = async function addSampleAdminData() {
 
 const addSamplePaymentData = async function addSamplePaymentData() {
     try {
+        
         const paymentData = [
             { payment_id: 'pay123', amount: 1000 },
             { payment_id: 'pay456', amount: 2000 }
@@ -33,7 +31,7 @@ const addSamplePaymentData = async function addSamplePaymentData() {
 }
 
 const addSampleAccountData = async function addSampleAccountData() {
-    try {
+    try {        
         const accountData = [
             { account_number: "delhi786", balance: 1120245 },
             { account_number: "delhi759", balance: 1121545 }
@@ -44,6 +42,5 @@ const addSampleAccountData = async function addSampleAccountData() {
         console.error("Error adding sample payment data to client DB:", error);
     }
 }
-
 
 export { addSampleAdminData, addSamplePaymentData, addSampleAccountData };

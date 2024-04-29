@@ -1,19 +1,15 @@
 import mongoose from "mongoose";
+
 // Import schemas
 import paymentSchema from "./payment.schema.js";
 import accountSchema from "./accounts.schema.js";
 
-const clientConnection = (uri, options = {}, x) => {
-    let PaymentModel;
-    let AccountModel;
+const dl = function clientConnection(uri, options = {}, x){
+    let db;
 
-    if (x == 2) {
+    if (x === 2) {
         const url = uri + "/serverEnd1";
-        const db = mongoose.createConnection(url, options);
-
-        // Initialize models
-         PaymentModel = db.model("Payment", paymentSchema);
-         AccountModel = db.model("Account", accountSchema);
+        db = mongoose.createConnection(url, options);
 
         // Event handling
         db.once('open', () => console.info("MongoDB secondary connection opened!"));
@@ -32,14 +28,21 @@ const clientConnection = (uri, options = {}, x) => {
             });
         });
 
-        // Export models and connection object
-        return { db, PaymentModel, AccountModel };
+        // Export db object
+        return db;
     } else {
-        console.log("nahi chala naa heheheh");
+        console.log("Invalid value of x");
         // Handle the case where x is not equal to 2
-        throw new Error('Invalid value of x');
+        return null;
     }
 };
 
-export default clientConnection;
 
+// Function to create models using the provided db object
+
+    // Initialize models
+    const PaymentModel = dl.model("Payment", paymentSchema);
+    const AccountModel = dl.model("Account", accountSchema);
+
+
+export { dl, PaymentModel,AccountModel };
